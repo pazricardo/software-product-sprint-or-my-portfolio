@@ -26,3 +26,25 @@ function addRandomGreeting() {
   const greetingContainer = document.getElementById('greeting-container');
   greetingContainer.innerText = greeting;
 }
+
+function getRandomQuoteUsingArrowFunctions() {
+  fetch('/data').then(response => response.text()).then((quote) => {
+    document.getElementById('quote-container').innerText = quote;
+  });
+}
+
+function createMap() {
+  const map = new google.maps.Map(
+      document.getElementById('map'),
+      {center: {lat: 42.728081, lng: -84.484927}, zoom: 10});
+
+  const trexMarker = new google.maps.Marker({
+      position: {lat: 42.728081, lng: -84.484927},
+      map: map,
+      title: 'MSU'
+    });
+
+  const trexInfoWindow =
+      new google.maps.InfoWindow({content: "This is Michigan State University's Stadium."});
+  trexInfoWindow.open(map, trexMarker);
+}
